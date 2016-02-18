@@ -38,12 +38,23 @@ class Car {
 
     }
 
-    public function addCoverage(cov : Coverage){
+    public function addCoverage(cov : Coverage,pol : Policy){
+        cov.ParentPolicy = pol
+        cov.CoveredCar = this
+       foreach(coverage in Coverages)
+       {
+           if(cov.InsuranceCoverageType == coverage.InsuranceCoverageType)
+               throw new Exception("The car already has the coverage.")
+       }
         Coverages.add(cov)
+
     }
 
-    public function addCoverages(covs : ArrayList<Coverage>){
-        Coverages.addAll(covs)
+    public function addCoverages(covs : ArrayList<Coverage>,pol : Policy){
+        foreach(cove in covs)
+        {
+          addCoverage(cove,pol)
+        }
     }
 
     private function generateVIN(){

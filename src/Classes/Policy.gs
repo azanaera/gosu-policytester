@@ -15,6 +15,22 @@ class Policy extends AbstractPolicy{
     private var _expirationdate = new Date()
     private construct(){}
 
+    public construct(customer : Person, term : PolicyTerm)
+    {
+        _vehicles = new ArrayList<Car>()
+        _drivers  = new ArrayList<Person>()
+        super._policyNbr = super.assignNextPolicyNumber()
+        _primaryInsuredPerson = customer
+        switch (term)
+        {
+            case ONEYEAR:
+                _expirationdate = Date.Now.addYears(1)
+                break
+            case SIXMONTHS:
+                _expirationdate = Date.Now.addMonths(6)
+                break
+        }
+    }
     public construct(effectDate : Date, expireDate : Date)
     {
         _vehicles = new ArrayList<Car>()
@@ -23,9 +39,9 @@ class Policy extends AbstractPolicy{
         _effectivedate = effectDate
         _expirationdate = expireDate
     }
+
     override function toString() : String
     {
-
         var str =
             "Policy Contract\n" +
             "=======================================\n" +
@@ -62,13 +78,13 @@ class Policy extends AbstractPolicy{
         return _vehicles
     }
 
-    property set Vehicles(val : ArrayList<Car>)
-    {
-        _vehicles = val
-    }
-
     override property get Drivers(): ArrayList<Person> {
         return _drivers
+    }
+
+    property set Vehicles(value : ArrayList<Car>)
+    {
+        _vehicles = value
     }
 
     /**
@@ -78,7 +94,12 @@ class Policy extends AbstractPolicy{
      * @return
      */
     override function getCarCoverages(veh: Car): ArrayList<Coverage> {
-        return null
+        var carCovs = new ArrayList<Coverage>()
+        foreach(coverage in veh.Coverages)
+        {
+            carCovs.add(coverage)
+        }
+        return carCovs //ok
     }
 
     /**
@@ -104,10 +125,13 @@ class Policy extends AbstractPolicy{
     override function getCoveredCarCount(coverageType: CoverageType): Integer {
         var count = 0
 
-        foreach(item in Vehicles)
+        foreach(car in Vehicles)
         {
-            if(coverageType.equals(item.Coverages))
-                count++
+           foreach(coverage in car.Coverages)
+           {
+               if(coverage.InsuranceCoverageType == coverageType)
+                   count++
+           }
         }
 
         return count
@@ -123,6 +147,12 @@ class Policy extends AbstractPolicy{
      * @throws Exception if the specified car is not already on the Policy or if the specified car already has the coverage added.
      */
     override function addCoverage(cov: Coverage, veh: Car) {
-
+//                 //doesnt exist on the policy
+        if(!Vehicles.contains(veh))
+            throw new Exception("The car is not on the Policy.")
+        else
+        cov.CoveredCar = veh
+        cov.ParentPolicy = this
+        veh.addCoverage(cov,this)
     }
 }
