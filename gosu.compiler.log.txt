@@ -1,0 +1,4 @@
+Gosu compiler(GosuPolicyTester) took 4.435s.
+Gosu compiler(GosuPolicyTester) took 3.132s.
+Gosu compiler(GosuPolicyTester) took 3.759s.
+Gosu compiler(GosuPolicyTester) took 3.542s.
