@@ -41,13 +41,13 @@ class Car {
     public function addCoverage(cov : Coverage,pol : Policy){
         cov.ParentPolicy = pol
         cov.CoveredCar = this
+
        foreach(coverage in Coverages)
        {
            if(cov.InsuranceCoverageType == coverage.InsuranceCoverageType)
                throw new Exception("The car already has the coverage.")
        }
         Coverages.add(cov)
-
     }
 
     public function addCoverages(covs : ArrayList<Coverage>,pol : Policy){
@@ -65,6 +65,4 @@ class Car {
     {
         return Color!=null && Price!=0 ? "${Color} ${Make} ${Model} ${Year} ($${Price})" : "${Make} ${Model} ${Year}"
     }
-
-
 }

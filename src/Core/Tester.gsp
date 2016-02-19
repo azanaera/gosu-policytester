@@ -18,11 +18,11 @@ policy.addCoverage(new Coverage(CoverageType.BodilyInjury), car2)
 //This must throw an exception because the same coverage is being added to the same car twice
 //policy.addCoverage(new Coverage(CoverageType.BodilyInjury), car1) // *ok
 
-car1.addCoverages({new Coverage(Liability),new Coverage(Comprehensive)},policy)
+//car1.addCoverages({new Coverage(Liability),new Coverage(Comprehensive)},policy)
 ////This must throw an exception because the coverage is being added to a car that is not on the Policy
-//policy.addCoverage(new Coverage(CoverageType.Liability), car3) // *ok
+policy.addCoverage(new Coverage(CoverageType.Liability), car3) // *ok
 //
 var covs = policy.getCarCoverages(car1) //should return coverages for car1 only *ok
 var count = policy.getCoveredCarCount(CoverageType.BodilyInjury) //This should return 2 - i.e 2 cars on the policy have the coverage type *ok
 
-covs.forEach(\e -> print(e.ParentPolicy.toString()+e.InsuranceCoverageType+"   "+e.CoveredCar))
+//covs.forEach(\e -> print(e.InsuranceCoverageType.toString().rightPad(20).replace('\0',' ')+"   "+e.CoveredCar))

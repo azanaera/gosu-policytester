@@ -110,10 +110,7 @@ class Policy extends AbstractPolicy{
      * @return
      */
     override function isPolicyInForce(aDate: Date): boolean {
-        if(aDate >= EffectiveDate && aDate <= ExpirationDate)
-            return true
-        else
-            return false
+        return aDate >= EffectiveDate && aDate <= ExpirationDate
     }
 
     /**
@@ -147,12 +144,11 @@ class Policy extends AbstractPolicy{
      * @throws Exception if the specified car is not already on the Policy or if the specified car already has the coverage added.
      */
     override function addCoverage(cov: Coverage, veh: Car) {
-//                 //doesnt exist on the policy
-        if(!Vehicles.contains(veh))
-            throw new Exception("The car is not on the Policy.")
-        else
-        cov.CoveredCar = veh
-        cov.ParentPolicy = this
-        veh.addCoverage(cov,this)
+        if(!Vehicles.contains(veh)) {
+            throw new Exception("The car is not on the policy.")
+        }
+        else {
+            veh.addCoverage(cov, this)
+        }
     }
 }
