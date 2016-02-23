@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+    <policy id="200">
+        <primaryInsuredPerson>Era</primaryInsuredPerson>
+        <effectivedate> Feb. 23, 2016</effectivedate>
+        <expirationdate>Feb. 23, 2017</expirationdate>
+        <vehicles>
+            <car id="1">
+                <vin></vin>
+                <year>2014</year>
+                <make>Honda</make>
+                <model>Civic</model>
+                <price>25000</price>
+                <color>BLUE</color>
+                <coverages>
+                    <covType>Comprehensive</covType>
+                    <covType>Bodily Injury</covType>
+                </coverages>
+            </car>
+            <car id="2">
+                <vin></vin>
+                <year>2011</year>
+                <make>Toyota</make>
+                <model>Camry</model>
+                <price>95000</price>
+                <color>BLACK</color>
+                <coverages>
+                    <covType>Bodily Injury</covType>
+                    <covType>Liability</covType>
+                </coverages>
+            </car>
+        </vehicles>
+
+        <drivers>
+            <person id="1">
+                <firstname>John</firstname>
+                <lastname>Watson</lastname>
+                <address>
+                    <street>212 Baker St.</street>
+                    <city>London</city>
+                    <province>United Kingdom</province>
+                    <zip>16</zip>
+                </address>
+            </person>
+
+            <person id="2">
+                <firstname>Sherlock</firstname>
+                <lastname>Holmes</lastname>
+                <address>
+                    <street>212 Baker St.</street>
+                    <city>Silang</city>
+                    <province>Cavite</province>
+                    <zip>4118</zip>
+                </address>
+            </person>
+        </drivers>
+    </policy>
+</policies>
